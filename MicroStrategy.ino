@@ -15,6 +15,8 @@ unsigned int sensorValues[NUM_SENSORS];
 unsigned int positionVal = 0;
 unsigned int count = 0;
 unsigned int timer = 0;
+unsigned int hitObject = false;
+
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, HIGH);
@@ -26,7 +28,7 @@ void setup() {
   {
     reflectanceSensors.calibrate();
   }
-  // --------------------------- End Of The Calibration ----------------------------
+  // --------------------------- End Of The Calibration ---------------------------
 }
 
 unsigned int mostLeftSensor() 
@@ -125,11 +127,17 @@ void loop()
         }
         timer = 0;
       }
+      hitObject = false;
     }
-    else 
+    else
     {
-      count = count + 1;
-      go();
+      if(hitObject == false)
+      {
+        go();
+        count = count + 1;
+        hitObject = true;
+        timer = 0;
+      }
     }  
   }
 }
