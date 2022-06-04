@@ -19,7 +19,7 @@ unsigned int hitObject = false;
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, HIGH);
+  // digitalWrite(LED_PIN, HIGH);
 
   // --------------------------- Start Of The Calibration -------------------------
   reflectanceSensors.init();
@@ -115,7 +115,7 @@ void loop()
     {
       timer = timer + 1;
       turnRight();
-      if((timer >= 1500) && digitalRead(MZ80_PIN) == 1) 
+      if((timer >= 1300) && digitalRead(MZ80_PIN) == 1) 
       {
         stop_moving();
         for(int index=0; index<count; index++) 
